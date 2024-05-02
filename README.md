@@ -30,7 +30,10 @@ To normalize your data, you will need:
 4. .npo files generated after running nonpareil (stand-alone) with each of your metagenomes of interest. These files should be placed on the same folder where you are running the analysis. For instructions about how to run nonpareil visit https://nonpareil.readthedocs.io/en/latest/index.html
 
 
+
 Once you have prepared your tables, you are ready to normalize your data in a matter of seconds!
+
+
 For TAD/GEQ data:
 ```
 Rscript Npc_normalizer.R
