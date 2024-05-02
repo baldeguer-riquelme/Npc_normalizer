@@ -42,15 +42,15 @@ Once you have prepared your tables, you are ready to normalize your data in a ma
 
 For TAD/GEQ data:
 ```
-Rscript Npc_normalizer.R
+Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m GEQ_obs.txt -i TAD_GEQ -n 0.6 
 ```
 
 For RPKM data:
 ```
-Rscript Npc_normalizer.R
+Rscript Npc_normalizer.R -a Matrix_RPKM.txt -f Feature_metadata.txt -i RPKM -n 0.6
 ```
 
 For reads counts:
 ```
-Rscript Npc_normalizer.R
+Rscript Npc_normalizer.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n 0.6
 ```
