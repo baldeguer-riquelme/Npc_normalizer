@@ -1,7 +1,7 @@
 # Nonpareil coverage normalizer
 Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recruited reads) at a given nonpareil coverage
 
-# Install dependencies
+### Install dependencies
 ```
 conda create -n npc_norm -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil
 ```
@@ -21,7 +21,7 @@ quit()
 R CMD INSTALL .
 ```
 
-# How to run
+### How to run
 To normalize your data, you will need:
 
 1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Accepted abundance metrics are: TAD/GEQ, RPKM or reads.
