@@ -3,7 +3,7 @@ Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recrui
 
 ### Install dependencies
 ```
-conda create -n npc_norm -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil
+conda create -n npc_norm -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil r::r-roxygen2
 ```
 
 ```
