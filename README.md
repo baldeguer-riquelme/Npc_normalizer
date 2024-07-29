@@ -33,7 +33,7 @@ To verify that the script runs without errors, run a test with the files placed 
 ```
 cp scripts/Npc_normalizer.R examples
 cd examples
-Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.6 
+Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.5 
 ```
 
 The output should look like:
