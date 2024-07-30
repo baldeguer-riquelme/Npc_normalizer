@@ -70,6 +70,31 @@ Using Gene as id variables
 ```
 
 ### How to run
+## 1. Check if your data requires Nonpareil coverage normalization
+
+Coming soon
+
+## 2. Normalization
+In the case that your data requires Nonpareil coverage normalization, there are two options: 1) subsampling the metagenome or 2) estimate relative abundances.
+
+## 2.1. Metagenome subsampling
+To get your subsampled metagenome at a given Nonpareil coverage you will need:
+
+1. Metagenome in FastQ/A format. Single or pair end.
+2. npo files from Nonpareil analysis 
+
+Then, you will have to choose the Nonpareil coverage value you would like to subsample your metagenome and run:
+```
+# For single end metagenomes
+Rscript Npc_normalizer_manual.R --m metagenome.fastq --npo metagenome.npo --cov 0.6
+```
+
+```
+# For pair end metagenomes
+Rscript Npc_normalizer_manual.R --m metagenome_1.fastq --m2 metagenome_2.fastq --npo metagenome.npo --cov 0.6
+```
+
+## 2.2. Estimate relative abundances
 To normalize your data, you will need:
 
 1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Accepted abundance metrics are: TAD/GEQ, RPKM or reads.
