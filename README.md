@@ -1,5 +1,5 @@
 # Nonpareil coverage normalizer
-Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recruited reads) to a given nonpareil coverage.
+Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recruited reads) to a given Nonpareil coverage (Npc).
 
 ### Install dependencies
 ```
@@ -70,9 +70,27 @@ Using Gene as id variables
 ```
 
 ## How to run
-## 1. Check if your data requires Nonpareil coverage normalization
+## 1. Check if your data requires Nonpareil coverage normalization based on ΔNpc_max
+In the case that the Nonpareil coverage of your metagenome(s) is different between the factors you are interested in (e.g., treated vs control metagenomes) you should calculate ΔNpc_max to assess whether such difference could have an impact on your results. You can also calculate this metric to determine the minimum Npc needed to detect a genome/gene in one or multiple metagenomes. The script Npc_max.R was developed for this purpose and you will need:
 
-Coming soon
+1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Only TAD/GEQ is accepted for now. We plan to incorporate RPKM in the future.
+2. MAG metadata. MAG IDs and length (bp) should be provided in 2 columns named as "MAG" and "Length". Genes can be used instead of MAGs but the column header should be kept as "MAG". Feature factors (e.g., taxonomy or gene function) along with their corresponding levels (e.g., ) can be added in the third and following columns.
+3. Metagenome metadata. Metagenome IDs and genome equivalents (GEQ) should be provided with at least 2 columns named as "Metagenome" and "GEQ". Metagenome factors (e.g., Antibiotic treatment) along with their corresponding levels (e.g., treated vs untreated) can be added in the third and following columns.
+4. .npo files generated after running nonpareil (stand-alone) with each of your metagenomes of interest. These files should be placed on the same folder where you are running the analysis. For instructions about how to run nonpareil visit https://nonpareil.readthedocs.io/en/latest/index.html
+
+Once you have them, you are ready to calculate ΔNpc_max running:
+```
+Rscript Npc_max.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt --npo npo_folder/ -o output_test
+```
+
+Different statistical approaches will be used depending on the number of features and metagenomes per factor level:
+
+|              | 1 metagenome                                        | ≥ 2 metagenomes                                         |
+|--------------|-----------------------------------------------------|---------------------------------------------------------|
+| 1 feature    | Minimum Npc to detect the feature in the metagenome | t.test of the aggregated relative abundances per sample |
+| ≥ 2 features | t.test                                              | t.test of the aggregated relative abundances per sample |
+
+The output will be a tab delimited table with the results for each metagenome and feature factor. In the case that factors are not provided, the script will calculate the minimum Npc needed to detected each individual feature (genome or gene) in each metagenome. If ΔNpc_max of your feature(s) of interest is lower than the actual Npc difference between your metagenomes you will need to normalize your metagenomes to the same Npc (see section 2 below).
 
 ## 2. Normalization
 In the case that your data requires Nonpareil coverage normalization, there are two options: 1) subsampling the metagenome or 2) estimate relative abundances.
