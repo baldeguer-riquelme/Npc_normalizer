@@ -71,7 +71,7 @@ Using Gene as id variables
 
 ## How to run
 ## 1. Check if your data requires Nonpareil coverage normalization based on ΔNpc_max
-In the case that the Nonpareil coverage of your metagenome(s) is different between the factors you are interested in (e.g., treated vs control metagenomes) you should calculate ΔNpc_max to assess whether such difference could have an impact on your results. You can also calculate this metric to determine the minimum Npc needed to detect a genome/gene in one or multiple metagenomes. The script Npc_max.R was developed for this purpose and you will need:
+In the case that the Nonpareil coverage of your metagenome(s) is different between the factors you are interested in (e.g., treated vs control metagenomes) you should calculate ΔNpc_max to assess whether such difference could have an impact on your results. You can also calculate this metric to determine the minimum Npc needed to detect a genome/gene in one metagenome. The script Npc_max.R was developed for this purpose and you will need:
 
 1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Only TAD/GEQ is accepted for now. We plan to incorporate RPKM in the future.
 2. MAG metadata. MAG IDs and length (bp) should be provided in 2 columns named as "MAG" and "Length". Genes can be used instead of MAGs but the column header should be kept as "MAG". Feature factors (e.g., taxonomy or gene function) along with their corresponding levels (e.g., ) can be added in the third and following columns.
