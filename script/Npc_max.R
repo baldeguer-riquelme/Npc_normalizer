@@ -26,7 +26,7 @@ module_1 <- function(){
 
 # Module 2. Estimate TAD80 values for the group of metagenomes with the highest average value
 #### Function to estimate sequencing depth
-estimate_SD_GEQ = function(sample_to_norm_metadata, x, df_reads_coverage, read_length){
+estimate_SD_GEQ <- function(sample_to_norm_metadata, x, df_reads_coverage, read_length){
   new_df <- sample_to_norm_metadata[,c("Feature", "Metagenome", "Length")]
   
   cov <- df_reads_coverage[x,]$Coverage
@@ -223,16 +223,11 @@ p <- add_argument(p, "--out", help = "Output file name. Tab delimited.", type = 
 argv <- parse_args(p)
 
 # Load libraries
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 options(dplyr.summarise.inform = FALSE)
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
 library(Nonpareil)
-library(data.table)
-library(cowplot)
-
-
-# On Mac
-#setwd("/Users/briquelme3/Dropbox (GaTech)/Metagenome_comparison_uneven_NonpareilCov/Metagenomic_data/tests/")
+suppressPackageStartupMessages(library(data.table))
 
 
 # 0. Read tables
