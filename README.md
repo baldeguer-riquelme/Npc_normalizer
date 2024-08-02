@@ -90,7 +90,7 @@ Different statistical approaches will be used depending on the number of feature
 | 1 feature    | Minimum Npc to detect the feature in the metagenome | t.test of the aggregated relative abundances per sample |
 | ≥ 2 features | t.test                                              | t.test of the aggregated relative abundances per sample |
 
-The output will be a tab delimited table with the results for each metagenome and feature factor. In the case that factors are not provided, the script will calculate the minimum Npc needed to detected each individual feature (genome or gene) in each metagenome. If ΔNpc_max of your feature(s) of interest is lower than the actual Npc difference between your metagenomes you will need to normalize your metagenomes to the same Npc (see section 2 below).
+The output will be 1) a pdf with boxplots displaying the abundance and number of features detected at each Npc and 2) a tab delimited table with the ΔNpc_max for each metagenome and feature factor. In the case that factors are not provided, the script will calculate the minimum Npc needed to detected each individual feature (genome or gene) in each metagenome. If ΔNpc_max of your feature(s) of interest is lower than the actual Npc difference between your metagenomes you will need to normalize your metagenomes to the same Npc (see section 2 below).
 
 ## 2. Normalization
 In the case that your data requires Nonpareil coverage normalization, there are two options: 1) subsampling the metagenome or 2) estimate relative abundances.
