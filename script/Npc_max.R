@@ -4,8 +4,8 @@
 # Email: briquelme3@gatech.edu
 
 # Module 1. Calculate coverage for each sample
-module_1 <- function(){
-  npo_files<-list.files(pattern="*.npo")
+module_1 <- function(npo_path){
+  npo_files<-list.files(path = npo_path, pattern="*.npo")
   
   nonpareil_coverage <- data.frame()
   for (i in npo_files){
@@ -240,7 +240,7 @@ out <- argv$out
 
 
 # 1. call module 1 (calculates coverage for each metagenome using .npo files)
-nonpareil_coverage <- module_1()
+nonpareil_coverage <- module_1(npo_path)
 
 
 # 2. Normalize all samples using the median Npc values as the starting point
