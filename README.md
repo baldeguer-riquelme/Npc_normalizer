@@ -26,7 +26,10 @@ quit()
 # In terminal
 R CMD INSTALL .
 ```
-
+### Clone the repository
+```
+git clone https://github.com/baldeguer-riquelme/Npc_normalizer.git
+```
 ### Test installation
 To verify that the script runs without errors, run a test with the files placed in the "examples" folder.
 
