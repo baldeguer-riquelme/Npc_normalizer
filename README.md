@@ -31,8 +31,8 @@ R CMD INSTALL .
 To verify that the script runs without errors, run a test with the files placed in the "examples" folder.
 
 ```
-cp scripts/Npc_normalizer.R examples
-cd examples
+cp Npc_normalizer/scripts/Npc_normalizer.R Npc_normalizer/examples
+cd Npc_normalizer/examples
 Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.5 
 ```
 
