@@ -59,13 +59,14 @@ cat(paste("\n[", Sys.time(), "] Calculating number of reads for Nonpareil covera
 
 seq_effort = summary.Nonpareil.Curve(curva)["LR"]
 coverage = summary.Nonpareil.Curve(curva)["C"]
-decrease_ratio = seq_effort*0.0001
+decrease_ratio = seq_effort*0.00001
 while (coverage > argv$cov){
   seq_effort = seq_effort - decrease_ratio # Decrease 0.01% reads per cycle
   coverage = predict.Nonpareil.Curve(curva, lr=seq_effort)
 }
 
 read_subsampling = round((seq_effort / read_length), 0)
+read_subsampling = format(read_subsampling, scientific = F)
 
 cat(paste("\n\nInitial number of reads: ", read_total, "\nNumber of reads for Nonpareil coverage ", argv$cov, ": ", read_subsampling,"\n\n", sep=""))
 
