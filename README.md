@@ -2,6 +2,17 @@
 Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recruited reads) to a given Nonpareil coverage (Npc).
 
 ### Install dependencies
+[tidyverse](https://www.tidyverse.org)
+
+[reshape2](https://cran.r-project.org/web/packages/reshape2/index.html)
+
+[nonpareil](https://cran.r-project.org/web/packages/Nonpareil/index.html)
+
+[roxygen2](https://roxygen2.r-lib.org/index.html)
+
+[bbmap](https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/bbmap-guide/)
+
+
 ```
 conda create -n npc_norm -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil r-roxygen2 bbmap
 ```
@@ -146,16 +157,18 @@ Rscript Npc_normalizer.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n
 ## 3. Build in-silico metagenomes with user-defined characteristics
 In-silico metagenomes are a great tool for assessing the impact of Nonpareil coverage as well as for many other purposes. To facilitate this task and enhance reproducibility, we implemented this process in the MetaG_simulator.py script which allows controlling several metagenome characteristics such as number of species, number of genomes per species (microdiversity), evenness, metagenome size and number of replicates. The genome distribution both at the interspecies and intraspecies level, is fitted to a lognormal distribution which can be adapted to the users's interests by tunning several parameters. 
 
-# Dependencies
--[Mason](https://www.seqan.de/apps/mason.html)
--[NumPy](https://numpy.org/citing-numpy/)
--[Matplotlib](https://matplotlib.org/stable/project/citing.html)
+### Dependencies
+[Mason](https://www.seqan.de/apps/mason.html)
+
+[NumPy](https://numpy.org/citing-numpy/)
+
+[Matplotlib](https://matplotlib.org/stable/project/citing.html)
 
 ```
-conda instal -c conda-forge -c bioconda numpy matplotlib mason
+conda install -c conda-forge -c bioconda numpy matplotlib mason
 ```
 
-# Run
+### Run
 The script only requires the following inputs to run:
 
 1. File containing the path to the folder containing the genomes of each species (one per line). Genomes will be processed in the same order they are in the file. 
