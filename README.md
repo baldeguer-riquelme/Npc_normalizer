@@ -154,7 +154,7 @@ For reads counts:
 Rscript Npc_normalizer.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n 0.6
 ```
 
-## 3. Build in-silico metagenomes with user-defined characteristics
+## 3. Build *in-silico* metagenomes with user-defined characteristics
 In-silico metagenomes are a great tool for assessing the impact of Nonpareil coverage as well as for many other purposes. To facilitate this task and enhance reproducibility, we implemented this process in the MetaG_simulator.py script which allows controlling several metagenome characteristics such as number of species, number of genomes per species (microdiversity), evenness, metagenome size and number of replicates. The genome distribution both at the interspecies and intraspecies level, is fitted to a lognormal distribution which can be adapted to the users's interests by tunning several parameters. 
 
 ### Dependencies
