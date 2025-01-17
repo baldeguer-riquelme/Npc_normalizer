@@ -142,3 +142,35 @@ For reads counts:
 ```
 Rscript Npc_normalizer.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n 0.6
 ```
+
+## 3. Build in-silico metagenomes with user-defined characteristics
+In-silico metagenomes are a great tool for assessing the impact of Nonpareil coverage as well as for many other purposes. To facilitate this task and enhance reproducibility, we implemented this process in the MetaG_simulator.py script which allows controlling several metagenome characteristics such as number of species, number of genomes per species (microdiversity), evenness, metagenome size and number of replicates. The genome distribution both at the interspecies and intraspecies level, is fitted to a lognormal distribution which can be adapted to the users's interests by tunning several parameters. 
+
+# Dependencies
+-[Mason](https://www.seqan.de/apps/mason.html)
+-[NumPy](https://numpy.org/citing-numpy/)
+-[Matplotlib](https://matplotlib.org/stable/project/citing.html)
+
+```
+conda instal -c conda-forge -c bioconda numpy matplotlib mason
+```
+
+# Run
+The script only requires the following inputs to run:
+
+1. File containing the path to the folder containing the genomes of each species (one per line). Genomes will be processed in the same order they are in the file. 
+2. Output prefix.
+
+Then, you can run the script using default parameters:
+```
+python MetaG_simulator.py --genome genome_paths.txt --out test
+```
+
+By default, the metagenome will have an uneven genome distribution with a few abundant species and many low abundant species. However, you can modify this by tunning --max_value , --min_value and --mu. The ratio max_value / min_value determines the difference between the highest and the lowest abundant species. For example, if max_value = 100 and min_value = 1, the most abundant species will be 100 times more abundant than the less abundant one. By default, the ratio is 10,000. The --mu parameter controls for the mean of the underlying normal distribution (for further details, see the "mean" argument of the numpy.random.lognormal function [https://numpy.org/doc/2.1/reference/random/generated/numpy.random.lognormal.html]). The default mu value is 2 which provides an uneven metagenome but could be increased to 5, for example, to make the distribution more even.
+```
+python MetaG_simulator.py --genome genome_paths.txt --out test --max_value 500 --min_value 1 --mu 5
+```
+
+The output will include the simulated fastq metagenome, a pdf with the plot of the lognormal distribution applied, the list of genomes included in the metagenome and a log file. Check the latter if facing any issues.
+
+
