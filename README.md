@@ -184,6 +184,13 @@ By default, the metagenome will have an uneven genome distribution with a few ab
 python MetaG_simulator.py --genome genome_paths.txt --out test --max_value 500 --min_value 1 --mu 5
 ```
 
-The output will include the simulated fastq metagenome, a pdf with the plot of the lognormal distribution applied, the list of genomes included in the metagenome and a log file. Check the latter if facing any issues.
+The output will include:
+1. the simulated fastq metagenome;
+
+2. a pdf with the plot of the lognormal distribution applied;
+
+3. the list of genomes included in the metagenome;
+
+4. a log file. Check it if facing any issues.
 
 
