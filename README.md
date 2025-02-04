@@ -47,7 +47,7 @@ To verify that the script runs without errors, run a test with the files placed 
 ```
 cp Nonpareil-coverage-standardization/scripts/Npc_normalizer.R Nonpareil-coverage-standardization/examples
 cd Nonpareil-coverage-standardization/examples
-Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.5 
+Rscript Npc_standardization.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.5 
 ```
 
 The output should look like:
@@ -76,11 +76,11 @@ Using Gene as id variables
 
 [ 2024-06-18 16:22:05 ] Calculating nonpareil coverage from .npo files...
 
-[ 2024-06-18 16:22:14 ] Using nonpareil coverage value provided by user (0.5) to normalize relative abundance...
+[ 2024-06-18 16:22:14 ] Using nonpareil coverage value provided by user (0.5) to standardize relative abundance...
 
-[ 2024-06-18 16:22:15 ] Normalizing data...
+[ 2024-06-18 16:22:15 ] Standardizing data...
 
-[ 2024-06-18 16:22:47 ] Saving normalized matrix to file: Normalized_abundance_Npc_0.5.txt
+[ 2024-06-18 16:22:47 ] Saving standardization matrix to file: Standardized_abundance_Npc_0.5.txt
 ```
 
 ## How to run
@@ -118,12 +118,12 @@ To get your subsampled metagenome at a given Nonpareil coverage you will need:
 Then, you will have to choose the Nonpareil coverage value you would like to subsample your metagenome and run:
 ```
 # For single end metagenomes
-Rscript Npc_normalizer_manual.R --m metagenome.fastq --npo metagenome.npo --cov 0.6
+Rscript Npc_standardization_manual.R --m metagenome.fastq --npo metagenome.npo --cov 0.6
 ```
 
 ```
 # For pair end metagenomes
-Rscript Npc_normalizer_manual.R --m metagenome_1.fastq --m2 metagenome_2.fastq --npo metagenome.npo --cov 0.6
+Rscript Npc_standardization_manual.R --m metagenome_1.fastq --m2 metagenome_2.fastq --npo metagenome.npo --cov 0.6
 ```
 
 ### 2.2. Estimate relative abundances
@@ -141,17 +141,17 @@ Once you have prepared your tables, you are ready to standardize your data in a 
 
 For TAD/GEQ data:
 ```
-Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.6 
+Rscript Npc_standardization.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.6 
 ```
 
 For RPKM data:
 ```
-Rscript Npc_normalizer.R -a Matrix_RPKM.txt -f Feature_metadata.txt -i RPKM -n 0.6
+Rscript Npc_standardization.R -a Matrix_RPKM.txt -f Feature_metadata.txt -i RPKM -n 0.6
 ```
 
 For reads counts:
 ```
-Rscript Npc_normalizer.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n 0.6
+Rscript Npc_standardization.R -a Matrix_Reads.txt -f Feature_metadata.txt -i reads -n 0.6
 ```
 
 ## 3. Build *in-silico* metagenomes with user-defined characteristics
