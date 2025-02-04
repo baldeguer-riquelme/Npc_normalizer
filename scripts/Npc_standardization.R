@@ -145,7 +145,7 @@ estimate <- function(sample, min_avg_coverage, abund_table_3col, input_format){
 
 #### Function to integrate module 3
 module_3 <- function(abund_table_3col, min_avg_coverage, input_format){
-  # Iterate through each sample subject to normalization
+  # Iterate through each sample subject to standardization
   df_estimated <- data.frame()
   for (samp in unique(abund_table_3col$Metagenome)){
     res <- estimate(samp, min_avg_coverage, abund_table_3col, input_format)
@@ -154,8 +154,8 @@ module_3 <- function(abund_table_3col, min_avg_coverage, input_format){
   
   # Save matrix
   Norm_matrix <- acast(formula = Feature ~ Metagenome, value.var = "RelAbund_estim", data=df_estimated) %>% as.data.frame()
-  out_name <- paste("Normalized_abundance_Npc_", round(min_avg_coverage,2), ".txt",sep="")
-  cat(paste("\n[ ", Sys.time(), " ] Saving normalized matrix to file: ", out_name, "\n", sep=""))
+  out_name <- paste("Standardized_abundance_Npc_", round(min_avg_coverage,2), ".txt",sep="")
+  cat(paste("\n[ ", Sys.time(), " ] Saving standardized matrix to file: ", out_name, "\n", sep=""))
   write.table(Norm_matrix, file=out_name, sep="\t", col.names = T, row.names=T, dec=".", quote=F)
   
   return(df_estimated)
@@ -213,11 +213,11 @@ cat(paste("\n[ ", Sys.time(), " ] Calculating nonpareil coverage from .npo files
 nonpareil_coverage <- module_1()
 
 
-# 3. Check if nonp_cov was provided by user. If so, use this value for normalization. Otherwise, use the minimum nonpareil coverage
+# 3. Check if nonp_cov was provided by user. If so, use this value for standardization. Otherwise, use the minimum nonpareil coverage
 if (cov_to_norm != ""){
   if (class(cov_to_norm) == "numeric"){
     min_avg_coverage <- cov_to_norm
-    cat(paste("\n[ ", Sys.time(), " ] Using nonpareil coverage value provided by user (", min_avg_coverage, ") to normalize relative abundance...", "\n", sep=""))
+    cat(paste("\n[ ", Sys.time(), " ] Using nonpareil coverage value provided by user (", min_avg_coverage, ") to standardize relative abundance...", "\n", sep=""))
     if (input_format == "RPKM" & min_avg_coverage <= 0.3){
       cat(paste("\n[ ", Sys.time(), " ] WARNING! RPKM values from metagenomes with a nonpareil coverage =< 0.3 are unreliable. Results will likely be biased", sep=""))
     }
@@ -226,7 +226,7 @@ if (cov_to_norm != ""){
   }
 } else {
   min_avg_coverage <- min(nonpareil_coverage$Coverage)
-  cat(paste("\n[ ", Sys.time(), " ] Using minimum nonpareil coverage value (", round(min_avg_coverage,2), ") to normalize relative abundance...", "\n", sep=""))
+  cat(paste("\n[ ", Sys.time(), " ] Using minimum nonpareil coverage value (", round(min_avg_coverage,2), ") to standardize relative abundance...", "\n", sep=""))
   if (input_format == "RPKM" & min_avg_coverage <= 0.3){
     cat(paste("\n[ ", Sys.time(), " ] WARNING! RPKM values from metagenomes with a nonpareil coverage =< 0.3 are unreliable. Results will likely be biased", sep=""))
   }
@@ -238,6 +238,6 @@ abund_table_3col_parsed <- module_2(abund_table_3col, feature_metadata, metag_me
 
 
 # 5. Estimated relative abundance at given nonpareil coverage and save table
-cat(paste("\n[ ", Sys.time(), " ] Normalizing data...", "\n", sep=""))
+cat(paste("\n[ ", Sys.time(), " ] Standardizing data...", "\n", sep=""))
 df_estimated <- module_3(abund_table_3col_parsed, min_avg_coverage, input_format)
 
