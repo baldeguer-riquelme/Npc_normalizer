@@ -39,14 +39,14 @@ R CMD INSTALL .
 ```
 ### Clone the repository
 ```
-git clone https://github.com/baldeguer-riquelme/Npc_normalizer.git
+git clone https://github.com/baldeguer-riquelme/Nonpareil-coverage-standardization.git
 ```
 ### Test installation
 To verify that the script runs without errors, run a test with the files placed in the "examples" folder.
 
 ```
-cp Npc_normalizer/scripts/Npc_normalizer.R Npc_normalizer/examples
-cd Npc_normalizer/examples
+cp Nonpareil-coverage-standardization/scripts/Npc_normalizer.R Nonpareil-coverage-standardization/examples
+cd Nonpareil-coverage-standardization/examples
 Rscript Npc_normalizer.R -a Matrix_TAD_GEQ.txt -f Feature_metadata.txt -m Metagenome_metadata.txt -i TAD_GEQ -n 0.5 
 ```
 
