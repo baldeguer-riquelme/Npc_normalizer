@@ -1,5 +1,5 @@
-# Nonpareil coverage normalizer
-Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recruited reads) to a given Nonpareil coverage (Npc).
+# Nonpareil coverage standardization
+Repository with scripts to standardize relative abundance (TAD/GEQ, RPKM or recruited reads) to a given Nonpareil coverage (Npc).
 
 ### Install dependencies
 [tidyverse](https://www.tidyverse.org)
@@ -14,10 +14,10 @@ Repository with scripts to normalize relative abundance (TAD/GEQ, RPKM or recrui
 
 
 ```
-conda create -n npc_norm -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil r-roxygen2 bbmap
+conda create -n npc_stand -c conda-forge -c bioconda r-tidyverse r-reshape2 nonpareil r-roxygen2 bbmap
 ```
 ```
-conda activate npc_norm
+conda activate npc_stand
 ```
 
 To install argparser:
@@ -84,7 +84,7 @@ Using Gene as id variables
 ```
 
 ## How to run
-## 1. Check if your data requires Nonpareil coverage normalization based on ΔNpc_max
+## 1. Check if your data requires Nonpareil coverage standardization based on ΔNpc_max
 In the case that the Nonpareil coverage of your metagenome(s) is different between the factors you are interested in (e.g., treated vs control metagenomes) you should calculate ΔNpc_max to assess whether such difference could have an impact on your results. You can also calculate this metric to determine the minimum Npc needed to detect a genome/gene in one metagenome. The script Npc_max.R was developed for this purpose and you will need:
 
 1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Only TAD/GEQ is accepted for now. We plan to incorporate RPKM in the future.
@@ -106,8 +106,8 @@ Different statistical approaches will be used depending on the number of feature
 
 The output will be 1) a pdf with boxplots displaying the abundance and number of features detected at each Npc and 2) a tab delimited table with the ΔNpc_max for each metagenome and feature factor. In the case that factors are not provided, the script will calculate the minimum Npc needed to detected each individual feature (genome or gene) in each metagenome. If ΔNpc_max of your feature(s) of interest is lower than the actual Npc difference between your metagenomes you will need to normalize your metagenomes to the same Npc (see section 2 below).
 
-## 2. Normalization
-In the case that your data requires Nonpareil coverage normalization, there are two options: 1) subsampling the metagenome or 2) estimate relative abundances.
+## 2. Standardization
+In the case that your data requires Nonpareil coverage standardization, there are two options: 1) subsampling the metagenome or 2) estimate relative abundances.
 
 ### 2.1. Metagenome subsampling
 To get your subsampled metagenome at a given Nonpareil coverage you will need:
@@ -127,7 +127,7 @@ Rscript Npc_normalizer_manual.R --m metagenome_1.fastq --m2 metagenome_2.fastq -
 ```
 
 ### 2.2. Estimate relative abundances
-To normalize your data, you will need:
+To standardize your data, you will need:
 
 1. Abundance matrix. Should be tab delimited matrix with features (MAGs, genes) in rows and samples in columns. Accepted abundance metrics are: TAD/GEQ, RPKM or reads.
 2. MAG metadata. MAG IDs and length (bp) should be provided in 2 columns named as "MAG" and "Length". Genes can be used instead of MAGs but the column header should be kept as "MAG".
@@ -136,7 +136,7 @@ To normalize your data, you will need:
 
 
 
-Once you have prepared your tables, you are ready to normalize your data in a matter of seconds!
+Once you have prepared your tables, you are ready to standardize your data in a matter of seconds!
 
 
 For TAD/GEQ data:
